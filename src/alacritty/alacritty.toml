@@ -1,0 +1,6 @@
+import = [
+    "~/.config/alacritty/appaerance.toml",
+]
+
+[shell]
+program = "/usr/bin/zsh"
