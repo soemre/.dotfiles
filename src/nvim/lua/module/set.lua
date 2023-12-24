@@ -31,3 +31,8 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 
 vim.g.mapleader = " "
+
+-- There is no need to show the mode, after using another plugin for it (Lualine)
+vim.opt.showmode = false
+
+vim.opt.fillchars = { eob = " "}
