@@ -51,9 +51,20 @@ return require('packer').startup(function(use)
   -- Snippets
   use ("rafamadriz/friendly-snippets")
 
+  -- UI
   use {
       'nvim-lualine/lualine.nvim',
       requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+  }
+
+  use {
+      "nvim-tree/nvim-tree.lua",
+      requires = { "nvim-tree/nvim-web-devicons" }
+  }
+
+  use {
+      "folke/trouble.nvim",
+      requires = { "nvim-tree/nvim-web-devicons" }
   }
 
 end)
