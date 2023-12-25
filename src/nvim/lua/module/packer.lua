@@ -67,4 +67,5 @@ return require('packer').startup(function(use)
       requires = { "nvim-tree/nvim-web-devicons" }
   }
 
+  use("airblade/vim-gitgutter")
 end)

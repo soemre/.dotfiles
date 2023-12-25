@@ -12,5 +12,8 @@ vim.keymap.set("n", "N", "Nzz")
 vim.keymap.set("x", "<leader>p", "\"_dp")
 vim.keymap.set({ "n", "v" }, "<leader>d", "\"_d")
 
+vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
+
 -- Terminal
 vim.keymap.set({ "n", "v" }, "<C-\">", function() vim.cmd("! $TERM") end)

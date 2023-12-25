@@ -14,6 +14,7 @@ declare -A symlink_paths=(
     [".gitconfig"]="$HOME"
     ["nvim"]="$HOME/.config"
     ["alacritty"]="$HOME/.config"
+    ["fish"]="$HOME/.config"
 )
 
 # Adds symbolic links to given directories

@@ -4,3 +4,4 @@
 - NeoVim
 - Alacritty
 - Git
+- Fish

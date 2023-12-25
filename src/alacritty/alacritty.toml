@@ -1,6 +1,1 @@
-import = [
-    "~/.config/alacritty/appaerance.toml",
-]
-
-[shell]
-program = "/usr/bin/zsh"
+import = ["~/.config/alacritty/appearance.toml"]
