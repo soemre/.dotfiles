@@ -1,6 +1,7 @@
 #!/bin/bash
 
-declare -a PKGS_DEV=(
+declare -a PKGS=(
+    # Development
     "git"
     "neovim"
     "fish"
@@ -11,34 +12,63 @@ declare -a PKGS_DEV=(
     "android-studio"
     "ttf-firacode-nerd"
     "fzf"
-)
 
-declare -a PKGS_PERS=(
+    # Personal
     "google-chrome"
     "spotify"
-)
+    "obs-studio"
 
-declare -a PKGS_OS=(
-
-    "btop"
+    # OS
+    # "hyprland" # Tiling Window Manager
+    # "pipewire" # 
+    # "wireplumber" #
+    # "networkmanager"
+    # "pulseaudio"
+    # "libcamera"
+    
+    # OS Apps
+    "neofetch" # System Info
+    "btop" # A monitor of resources
+    "libreoffice-still" # Office Suite
+    "loupe" # Image Viewer (GNOME)
+    "decibels" # Audio Player (GNOME)
+    "impression" # Bootable Driver Generator (GNOME)
+    "snapshot" # Camera App (GNOME)
+    "gnome-clocks" # Clock App (GNOME)
 )
 
 # Install Yay
-pacman -S --needed git base-devel yay
+echo -e "$TAG_STATUS Looking for the \"yay\" package..."
 
-# Update Packages
+if [[ $(which yay) != "which: no " ]]
+then
+    echo -e "$TAG_SKIP \"yay\" has been already installed."
+else
+    echo -e "$TAG_STATUS \"yay\" is not found. Installing \"yay\"..."
+
+    sudo pacman -S --needed git base-devel yay
+
+    # Check whether the installation is successful
+    if [[ $(which yay) != "which: no " ]]
+    then
+        echo -e "$TAG_DONE Yay has been installed."
+    else
+        echo -e "$TAG_FAIL Yay is not installed. Stoping the script."
+        exit -1
+    fi
+fi
+
+
+# Update 
+echo -e "$TAG_STATUS Updating packages..."
 yay -Y --devel --save
 yay -Syu
 
 # Download Packages
-for pkg in PKGS_DEV; do
-    yay -S --needed $pkg
-done
+echo -e "$TAG_STATUS Downloading packages..."
 
-for pkg in PKGS_PERS; do
-    yay -S --needed $pkg
-done
+for PKG in "${PKGS[@]}"; do
+    yay -S --needed $PKG
 
-for pkg in PKGS_OS; do
-    yay -S --needed $pkg
+    echo -e "$TAG_DONE $PKG has been installed."
 done

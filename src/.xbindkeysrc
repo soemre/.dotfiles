@@ -1,0 +1,36 @@
+#Player Control
+"playerctl play-pause"
+XF86AudioPause
+
+"playerctl play-pause"
+XF86AudioPlay
+
+"playerctl play-pause"
+m:0x0 + c:208
+
+"playerctl next"
+XF86AudioNext
+
+"playerctl previous"
+XF86AudioPrev
+
+"pamixer -i 5"
+XF86AudioRaiseVolume
+
+"pamixer -d 5"
+XF86AudioLowerVolume
+
+"pamixer --default-source -t"
+XF86AudioMicMute
+
+"pamixer -t"
+XF86AudioMute
+
+"brightnessctl s 5%-"
+XF86MonBrightnessDown
+
+"brightnessctl s 5%+"
+XF86MonBrightnessUp
+
+"wofi --show drun"
+XF86Search

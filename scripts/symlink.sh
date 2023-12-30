@@ -1,34 +1,29 @@
 #!/bin/bash
 
-# Config
-readonly ABSOLUTE_PATH=$(realpath $(dirname $0))
-readonly SRC_DIR="src";
-
-readonly TAG_SKIP="SKIPPING";
-readonly TAG_EXCEPTION="FAILED";
-readonly TAG_DONE="DONE";
-
-
 # List of paths to add symbolic links to
-declare -A symlink_paths=(
+declare -A SYMLINKS=(
     [".gitconfig"]="$HOME"
+    [".xbindkeysrc"]="$HOME"
     ["nvim"]="$HOME/.config"
     ["alacritty"]="$HOME/.config"
     ["fish"]="$HOME/.config"
+    ["hypr"]="$HOME/.config"
 )
 
 # Adds symbolic links to given directories
-for from_path in "${!symlink_paths[@]}"; do
+echo -e "$TAG_STATUS Linking the config files..."
 
-    to_path="${symlink_paths["${from_path}"]}/${from_path}";
+for FROM_PATH in "${!SYMLINKS[@]}"; do
+
+    TO_PATH="${SYMLINKS["$FROM_PATH"]}/$FROM_PATH";
 
     # Skip existing paths
-    if [ -L ${to_path} ]; then
-        echo "[${TAG_SKIP}] ${from_path} is already linked to ${to_path}";
+    if [ -L $TO_PATH ]; then
+        echo -e "$TAG_SKIP $FROM_PATH is already linked to $TO_PATH";
         continue;
     fi
 
-    ln -s "${ABSOLUTE_PATH}/${SRC_DIR}/${from_path}" "${to_path}";
-    echo "[${TAG_DONE}] ${to_path} to ${from_path}";
+    ln -s "$ABSOLUTE_PATH/$SRC_DIR/$FROM_PATH" "$TO_PATH";
+    echo -e "$TAG_DONE $TO_PATH to $FROM_PATH";
 
 done
