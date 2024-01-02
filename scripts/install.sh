@@ -19,22 +19,35 @@ declare -a PKGS=(
     "obs-studio"
 
     # OS
-    # "hyprland" # Tiling Window Manager
-    # "pipewire" # 
-    # "wireplumber" #
     # "networkmanager"
-    # "pulseaudio"
-    # "libcamera"
+    "hyprland" # Tiling Window Manager
+    "pipewire" # Hardware Server 
+    "pulseaudio" # Audio Server
+    "wireplumber" 
+    "libcamera"
+    "pamixer"
+    "playerctl"
+    "brightnessctl"
     
-    # OS Apps
+    # System Utils
     "neofetch" # System Info
     "btop" # A monitor of resources
-    "libreoffice-still" # Office Suite
-    "loupe" # Image Viewer (GNOME)
-    "decibels" # Audio Player (GNOME)
-    "impression" # Bootable Driver Generator (GNOME)
-    "snapshot" # Camera App (GNOME)
+    "nautilus" # File Manager (GNOME)
+    "gnome-disk-utility" # Disk Util (GNOME)
+
+    # Drivers
+    "nvidia-settings" # Nvidia driver
+
+    # Other Utils
     "gnome-clocks" # Clock App (GNOME)
+    "snapshot" # Camera App (GNOME)
+    
+    # Multi Media and Documment Viewers
+    "gnome-font-viewer" # Font Viewer (GNOME)
+    "libreoffice-still" # Office Suite
+    "decibels" # Audio Player (GNOME)
+    "loupe" # Image Viewer (GNOME)
+    "vlc" # Video Player
 )
 
 # Install Yay
@@ -46,7 +59,13 @@ then
 else
     echo -e "$TAG_STATUS \"yay\" is not found. Installing \"yay\"..."
 
-    sudo pacman -S --needed git base-devel yay
+    # Build and Install
+    pacman -S --needed git base-devel
+    git clone https://aur.archlinux.org/yay-bin.git
+    cd yay-bin
+    makepkg -si
+    cd ..
+    rm -rf yay-bin
 
     # Check whether the installation is successful
     if [[ $(which yay) != "which: no " ]]
@@ -68,7 +87,7 @@ yay -Syu
 echo -e "$TAG_STATUS Downloading packages..."
 
 for PKG in "${PKGS[@]}"; do
-    yay -S --needed $PKG
+    yay -S --needed --sudoloop --answerclean All --answerdiff None $PKG
 
     echo -e "$TAG_DONE $PKG has been installed."
 done

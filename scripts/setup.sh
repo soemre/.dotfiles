@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Install Packer (NeoVim Plugin Manager)
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
 # Configure Default Shell
 echo -e "$TAG_STATUS Configuring the default shell as ${DEFAULT_SHELL}..."
 
