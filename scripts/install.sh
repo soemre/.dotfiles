@@ -12,6 +12,7 @@ declare -a PKGS=(
     "android-studio"
     "ttf-firacode-nerd"
     "fzf"
+    "nodejs"
 
     # Personal
     "google-chrome"
@@ -19,7 +20,7 @@ declare -a PKGS=(
     "obs-studio"
 
     # OS
-    # "networkmanager"
+    "networkmanager"
     "hyprland" # Tiling Window Manager
     "pipewire" # Hardware Server 
     "pulseaudio" # Audio Server
@@ -28,7 +29,12 @@ declare -a PKGS=(
     "pamixer"
     "playerctl"
     "brightnessctl"
-    
+    "xbindkeys"
+
+    # OS GUI
+    "waybar"
+    "waypaper-git" 
+
     # System Utils
     "neofetch" # System Info
     "btop" # A monitor of resources
@@ -36,7 +42,7 @@ declare -a PKGS=(
     "gnome-disk-utility" # Disk Util (GNOME)
 
     # Drivers
-    "nvidia-settings" # Nvidia driver
+    "nvidia-dkms" # Nvidia driver
 
     # Other Utils
     "gnome-clocks" # Clock App (GNOME)
@@ -87,7 +93,7 @@ yay -Syu
 echo -e "$TAG_STATUS Downloading packages..."
 
 for PKG in "${PKGS[@]}"; do
-    yay -S --needed --sudoloop --answerclean All --answerdiff None $PKG
+    yes | yay -S --needed --sudoloop --answerclean All --answerdiff None $PKG > /dev/null
 
     echo -e "$TAG_DONE $PKG has been installed."
 done

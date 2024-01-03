@@ -1,8 +1,24 @@
 #!/bin/bash
 
 # Install Packer (NeoVim Plugin Manager)
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+echo -e "$TAG_STATUS Installing Packer..."
+
+readonly PACKER_PATH="~/.local/share/nvim/site/pack/packer/start/packer.nvim"
+
+if [ -d $PACKER_PATH ]
+then
+    git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+     $PACKER_PATH
+
+    echo -e "$TAG_DONE Packer has been installed."
+else
+    echo -e "$TAG_SKIP Packer is already installed."
+fi
+
+# Sync Packer Plugins
+echo -e "$TAG_STATUS Synchronizing Packer Plugins..."
+nvim -c "PackerSync" -c "qall" > /dev/null
+echo -e "$TAG_DONE Packer Plugins are synchronized."
 
 # Configure Default Shell
 echo -e "$TAG_STATUS Configuring the default shell as ${DEFAULT_SHELL}..."
@@ -11,10 +27,15 @@ readonly SHELL_PATH=$(which $DEFAULT_SHELL);
 
 if [ $SHELL != $SHELL_PATH ]
 then
+    if grep -q $SHELL_PATH "/etc/shells"
+    then
+        echo $SHELL_PATH | sudo tee -a "/etc/shells"
+        echo -e "$TAG_DONE Default shell is added to shells."
+    else
+        echo -e "$TAG_SKIP Default shell is already added to shells." 
+    fi
 
-    sudo sh -c "$SHELL_PATH >> /etc/shells"
-    sudo chsh -s $SHELLPATH
-
+    sudo chsh -s $SHELL_PATH
     echo -e "$TAG_DONE Default shell is configured as ${DEFAULT_SHELL}."
 else
     echo -e "$TAG_SKIP Default shell is already configured as ${DEFAULT_SHELL}."
