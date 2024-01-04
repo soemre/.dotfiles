@@ -3,6 +3,7 @@
 declare -a PKGS=(
     # Development
     "git"
+    "github-cli"
     "neovim"
     "fish"
     "oh-my-fish"
@@ -12,7 +13,8 @@ declare -a PKGS=(
     "android-studio"
     "ttf-firacode-nerd"
     "fzf"
-    "nodejs"
+    "npm"
+    "tmux"
 
     # Personal
     "google-chrome"
@@ -43,7 +45,7 @@ declare -a PKGS=(
     "gnome-disk-utility" # Disk Util (GNOME)
 
     # Drivers
-    "nvidia-dkms" # Nvidia driver
+    "nvidia" # Nvidia driver
 
     # Other Utils
     "gnome-clocks" # Clock App (GNOME)
@@ -60,7 +62,7 @@ declare -a PKGS=(
 # Install Yay
 echo -e "$TAG_STATUS Looking for the \"yay\" package..."
 
-if [[ $(which yay) != "which: no " ]]
+if ! [[ "$(which yay)" == *"which: no " ]]
 then
     echo -e "$TAG_SKIP \"yay\" has been already installed."
 else
@@ -68,7 +70,7 @@ else
 
     # Build and Install
     pacman -S --needed git base-devel
-    git clone https://aur.archlinux.org/yay-bin.git
+    git clone https://aur.archlinux.org/yay-bin.git &> $LOG_FILE
     cd yay-bin
     makepkg -si
     cd ..
@@ -88,13 +90,14 @@ fi
 # Update 
 echo -e "$TAG_STATUS Updating packages..."
 yay -Y --devel --save
-yay -Syu
+yes | yay -Syu --sudoloop --answerclean All --answerdiff None &> $LOG_FILE
 
 # Download Packages
 echo -e "$TAG_STATUS Downloading packages..."
 
 for PKG in "${PKGS[@]}"; do
-    yes | yay -S --needed --sudoloop --answerclean All --answerdiff None $PKG > /dev/null
+    yes | yay -S --needed --sudoloop --answerclean All --answerdiff None $PKG \
+        &> $LOG_FILE
 
     echo -e "$TAG_DONE $PKG has been installed."
 done

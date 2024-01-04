@@ -2,6 +2,8 @@
 source "$(dirname $0)/scripts/config.sh";
 
 declare -a SCRIPTS=(
+    "utils.sh"
+    "init.sh"
     "install.sh"
     "symlink.sh"
     "setup.sh"

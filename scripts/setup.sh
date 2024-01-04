@@ -3,12 +3,12 @@
 # Install Packer (NeoVim Plugin Manager)
 echo -e "$TAG_STATUS Installing Packer..."
 
-readonly PACKER_PATH="~/.local/share/nvim/site/pack/packer/start/packer.nvim"
+readonly PACKER_PATH="$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
 
-if [ -d $PACKER_PATH ]
+if ! [ -d $PACKER_PATH ]
 then
-    git clone --depth 1 https://github.com/wbthomason/packer.nvim\
-     $PACKER_PATH
+    git clone --depth 1 https://github.com/wbthomason/packer.nvim $PACKER_PATH \
+        &> $LOG_FILE
 
     echo -e "$TAG_DONE Packer has been installed."
 else
@@ -17,7 +17,7 @@ fi
 
 # Sync Packer Plugins
 echo -e "$TAG_STATUS Synchronizing Packer Plugins..."
-nvim -c "PackerSync" -c "qall" > /dev/null
+nvim -es -c "autocmd User PackerComplete qall" -c "PackerSync"
 echo -e "$TAG_DONE Packer Plugins are synchronized."
 
 # Configure Default Shell
