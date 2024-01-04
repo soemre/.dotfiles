@@ -22,6 +22,7 @@ declare -a PKGS=(
     # OS
     "networkmanager"
     "hyprland" # Tiling Window Manager
+    "wl-clipboard"
     "pipewire" # Hardware Server 
     "pulseaudio" # Audio Server
     "wireplumber" 
