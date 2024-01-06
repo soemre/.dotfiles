@@ -7,7 +7,6 @@ declare -a PKGS=(
     "rust"
     "neovim"
     "fish"
-    "oh-my-fish"
     "alacritty-git"
     "flutter"
     "android-studio"
@@ -40,6 +39,8 @@ declare -a PKGS=(
     # OS GUI
     "waybar"
     "waypaper-git" 
+    "swww"
+    "ulauncher" # App launcher
 
     # System Utils
     "neofetch" # System Info

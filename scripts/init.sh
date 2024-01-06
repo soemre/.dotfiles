@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Initialize Log File
 readonly LOG_FILE="$(create_log_file)"
 

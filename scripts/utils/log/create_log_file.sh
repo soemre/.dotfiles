@@ -1,3 +1,5 @@
+#!/bin/bash
+
 create_log_file() {
     local log_dir="${ABSOLUTE_PATH}/logs"
     local file_name="${log_dir}/$(log_file_name).log"

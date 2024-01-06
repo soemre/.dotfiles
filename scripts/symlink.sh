@@ -8,6 +8,8 @@ declare -A SYMLINKS=(
     ["alacritty"]="$HOME/.config"
     ["fish"]="$HOME/.config"
     ["hypr"]="$HOME/.config"
+    ["waybar"]="$HOME/.config"
+    ["waypaper"]="$HOME/.config"
 )
 
 # Adds symbolic links to given directories
@@ -24,6 +26,6 @@ for FROM_PATH in "${!SYMLINKS[@]}"; do
     fi
 
     ln -s "$ABSOLUTE_PATH/$SRC_DIR/$FROM_PATH" "$TO_PATH";
-    echo -e "$TAG_DONE $TO_PATH to $FROM_PATH";
+    echo -e "$TAG_DONE Linked $TO_PATH to $FROM_PATH";
 
 done

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 readonly TAG_PREFIX="\e[0;37m["
 readonly TAG_SUFFIX="\e[0;37m]\e[0m"
 readonly TAG_STATUS="$TAG_PREFIX\e[1;34mSTATUS$TAG_SUFFIX";

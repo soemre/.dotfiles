@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Add the config file first
 source "$(dirname $0)/scripts/config.sh";
 
@@ -6,6 +8,7 @@ declare -a SCRIPTS=(
     "init.sh"
     "install.sh"
     "symlink.sh"
+    "misc.sh"
     "setup.sh"
 )
 
@@ -18,6 +21,6 @@ for exec in "${SCRIPTS[@]}"; do
     source "${PATH_TO_SCRIPTS}/${exec}";
 done
 
-echo -e "$TAG_DONE Bootstrap has been finished successfully."
+echo -e "$TAG_DONE Bootstrap has been finished successfully. Reboot to see the changes."
 
 sudo -k
