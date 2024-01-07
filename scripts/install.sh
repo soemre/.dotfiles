@@ -14,6 +14,7 @@ declare -a PKGS=(
     "fzf"
     "npm"
     "tmux"
+    "less"
 
     # Dependency
     "jack2"
@@ -28,13 +29,15 @@ declare -a PKGS=(
     "hyprland" # Tiling Window Manager
     "wl-clipboard"
     "pipewire" # Hardware Server 
-    "pulseaudio" # Audio Server
+    "pipewire-pulse" # Audio Server
     "wireplumber" 
     "libcamera"
     "pamixer"
     "playerctl"
     "brightnessctl"
     "xbindkeys"
+    "bluez"
+    "bluez-utils"
 
     # OS GUI
     "waybar"
