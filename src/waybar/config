@@ -8,7 +8,7 @@
 
     "modules-left":[ "custom/rmonitor", "battery", "wlr/taskbar" ],
     "modules-center": [ "clock" ],
-    "modules-right":[ "custom/spotify", "pulseaudio", "backlight", "bluetooth", "network" ],
+    "modules-right":[ "custom/spotify", "pulseaudio", "backlight", "bluetooth", "network", "custom/notification" ],
 
     // Modules configuration
     "custom/rmonitor": {
@@ -37,7 +37,10 @@
         "tooltip-format": "{title}",
         "on-click": "activate",
         "on-click-middle": "fullscreen",
-        "on-click-right": "close"
+        "on-click-right": "close",
+        "ignore-list": [
+            "ulauncher",
+        ],
     },
     "bluetooth": {
 	    "format": "{status} ",
@@ -68,15 +71,33 @@
         "format-icons": ["", "", "", "", ""]
     },
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": "{essid} ",
         "format-ethernet": "Connected  ",
         "tooltip-format": "{ifname} via {gwaddr}  ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
         "on-click-right": "bash ~/.config/rofi/wifi_menu/rofi_wifi_menu"
-
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "sleep 0.1; swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
     },
     "pulseaudio": {
         "format": "{volume}% {icon}",

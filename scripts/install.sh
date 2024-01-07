@@ -44,6 +44,7 @@ declare -a PKGS=(
     "waypaper-git" 
     "swww"
     "ulauncher" # App launcher
+    "swaync" # Notification Daemon
 
     # System Utils
     "neofetch" # System Info

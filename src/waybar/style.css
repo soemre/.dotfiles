@@ -47,7 +47,7 @@ window#waybar {
     color: #dc3636;
 }
 
-#custom-spotify, #bluetooth, #battery, #custom-rmonitor, #network, #backlight, #pulseaudio {
+#custom-notification, #custom-spotify, #bluetooth, #battery, #custom-rmonitor, #network, #backlight, #pulseaudio {
     padding: 0 16px;
 }
 
