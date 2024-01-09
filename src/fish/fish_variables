@@ -1,5 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR ANDROID_HOME:/home/emre/Android/Sdk
+SETUVAR CHROME_EXECUTABLE:/bin/google\x2dchrome
 SETUVAR __fish_initialized:3400
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
 SETUVAR fish_color_cancel:\x2dr

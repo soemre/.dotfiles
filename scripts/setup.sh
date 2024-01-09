@@ -29,7 +29,7 @@ if [ $SHELL != $SHELL_PATH ]
 then
     if grep -q ^$SHELL_PATH "/etc/shells"
     then
-        echo -e "$TAG_SKIP Default shell is already added to shells." 
+        echo -e "$TAG_SKIP Default shell is already added to shells."
     else
         echo $SHELL_PATH | sudo tee -a "/etc/shells" &> /dev/null
         echo -e "$TAG_DONE Default shell is added to shells."
@@ -80,9 +80,19 @@ for srv in "${services[@]}"; do
     sudo systemctl enable "$srv" &> $LOG_FILE
 
     if ! systemctl is-enabled "$srv" &> $LOG_FILE; then
-        echo -e "$TAG_FAIL Couldn't enable \"$srv\" service." 
+        echo -e "$TAG_FAIL Couldn't enable \"$srv\" service."
         continue
     fi
 
     echo -e "$TAG_DONE $srv service has been enabled."
 done
+
+# Setup Symbolic Link Of Google Chrome For Flutter
+echo -e "$TAG_STATUS Linking chrome..."
+
+if ! [ -L $CHROME_EXECUTABLE ]; then
+    ln -s /bin/google-chrome-stable /bin/google-chrome &> $LOG_FILE
+    echo -e "$TAG_DONE Chrome has been linked."
+else
+    echo -e "$TAG_SKIP Chrome is already linked."
+fi

@@ -15,7 +15,7 @@ declare -a SCRIPTS=(
 echo -e "$TAG_STATUS Need sudo access to run."
 
 # Get sudo access
-sudo -v 
+sudo -v
 
 for exec in "${SCRIPTS[@]}"; do
     source "${PATH_TO_SCRIPTS}/${exec}";

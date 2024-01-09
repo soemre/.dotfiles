@@ -3,7 +3,7 @@ opacity = 0.75
 blur = true
 
 [font]
-normal = { family = "Fira Code Nerd Font", style = "Regular" }
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
 size = 16
 
 [colors.primary]

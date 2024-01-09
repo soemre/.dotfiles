@@ -13,7 +13,7 @@ create_log_file() {
     then
         return -1
     fi
-    
+
     touch $file_name
     echo "$file_name"
     return 0

@@ -10,14 +10,26 @@ declare -a PKGS=(
     "alacritty-git"
     "flutter"
     "android-studio"
-    "ttf-firacode-nerd"
+    "ttf-jetbrains-mono-nerd"
     "fzf"
     "npm"
     "tmux"
     "less"
+    "lua-language-server"
+    "go"
+    "python"
+    "gcc"
+    "mandoc"
+    "clang"
+    "ruff"
+    "beautysh"
+    "delve"
+    "codelldb"
+    "python-debugpy"
 
     # Dependency
     "jack2"
+    "ttf-firacode-nerd"
 
     # Personal
     "google-chrome"
@@ -28,9 +40,9 @@ declare -a PKGS=(
     "networkmanager"
     "hyprland" # Tiling Window Manager
     "wl-clipboard"
-    "pipewire" # Hardware Server 
+    "pipewire" # Hardware Server
     "pipewire-pulse" # Audio Server
-    "wireplumber" 
+    "wireplumber"
     "libcamera"
     "pamixer"
     "playerctl"
@@ -41,7 +53,7 @@ declare -a PKGS=(
 
     # OS GUI
     "waybar"
-    "waypaper-git" 
+    "waypaper-git"
     "swww"
     "ulauncher" # App launcher
     "swaync" # Notification Daemon
@@ -59,7 +71,7 @@ declare -a PKGS=(
     # Other Utils
     "gnome-clocks" # Clock App (GNOME)
     "snapshot" # Camera App (GNOME)
-    
+
     # Multi Media and Documment Viewers
     "gnome-font-viewer" # Font Viewer (GNOME)
     "libreoffice-still" # Office Suite
@@ -96,10 +108,10 @@ else
 fi
 
 
-# Update 
+# Update
 echo -e "$TAG_STATUS Updating packages..."
 yay -Y --devel --save
-yes | yay -Syu --sudoloop --answerclean All --answerdiff None &> $LOG_FILE
+yes '' | yay -Syu --sudoloop --answerclean All --answerdiff None &> $LOG_FILE
 echo -e "$TAG_DONE Packages have been updated."
 
 # Download Packages
@@ -114,7 +126,7 @@ for PKG in "${PKGS[@]}"; do
 
     echo -e "$TAG_STATUS Downloading $PKG..."
 
-    yes | yay -S --needed --sudoloop --answerclean All --answerdiff None $PKG \
+    yes '' | yay -S --needed --sudoloop --answerclean All --answerdiff None $PKG \
         &> $LOG_FILE
 
     if yay -Q -q $PKG &> /dev/null
