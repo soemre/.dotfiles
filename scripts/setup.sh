@@ -17,7 +17,7 @@ fi
 
 # Sync Packer Plugins
 echo -e "$TAG_STATUS Synchronizing Packer Plugins..."
-nvim -es -c "autocmd User PackerComplete qall" -c "PackerSync"
+nvim -c "autocmd User PackerComplete qall" -c "PackerSync" > /dev/null 2> $LOG_FILE
 echo -e "$TAG_DONE Packer Plugins are synchronized."
 
 # Configure Default Shell
@@ -96,3 +96,6 @@ if ! [ -L $CHROME_EXECUTABLE ]; then
 else
     echo -e "$TAG_SKIP Chrome is already linked."
 fi
+
+# Nvidia Setup
+source "${PATH_TO_SCRIPTS}/setup/nvidia.sh"

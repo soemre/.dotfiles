@@ -35,6 +35,7 @@ declare -a PKGS=(
     "google-chrome"
     "spotify"
     "obs-studio"
+    "gimp"
 
     # OS
     "networkmanager"
@@ -50,6 +51,10 @@ declare -a PKGS=(
     "xbindkeys"
     "bluez"
     "bluez-utils"
+    "grim" # Screenshot
+    "slurp" # Screen Selection
+    "wf-recorder" # Screen Recording
+    "swappy" # Simple Photo Editor
 
     # OS GUI
     "waybar"
