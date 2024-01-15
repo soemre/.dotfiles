@@ -99,3 +99,6 @@ fi
 
 # Nvidia Setup
 source "${PATH_TO_SCRIPTS}/setup/nvidia.sh"
+
+# TPM Setup
+source "${PATH_TO_SCRIPTS}/setup/tpm.sh"

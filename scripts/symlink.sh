@@ -4,6 +4,7 @@
 declare -A SYMLINKS=(
     [".gitconfig"]="$HOME"
     [".xbindkeysrc"]="$HOME"
+    [".tmux.conf"]="$HOME"
     ["nvim"]="$HOME/.config"
     ["alacritty"]="$HOME/.config"
     ["fish"]="$HOME/.config"
