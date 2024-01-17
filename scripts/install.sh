@@ -36,6 +36,7 @@ declare -a PKGS=(
     "spotify"
     "obs-studio"
     "gimp"
+    "discord"
 
     # OS
     "networkmanager"
