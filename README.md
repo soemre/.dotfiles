@@ -18,7 +18,7 @@ run the `bootstrap.sh` script to start setting up your desktop environment.
 
 ### Remote Bootstrap
 ```bash
-$ curl -s https://raw.githubusercontent.com/emresoysuren/.dotfiles/main/bootstrap_remote.sh | bash
+$ curl -s https://raw.githubusercontent.com/emresoysuren/.dotfiles/main/bootstrap_remote.sh | sh
 ```
 
 ## Included Configs:

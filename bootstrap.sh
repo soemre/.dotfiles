@@ -1,26 +1,17 @@
 #!/bin/bash
 
-# Add the config file first
-source "$(dirname $0)/scripts/config.sh";
+# Initialize Bootstrap
+source "$(dirname $0)/scripts/config.sh"; # Must sourced manually
+source "$(dirname $0)/scripts/utils.sh"; # Must sourced manually
+source "$(dirname $0)/scripts/init.sh";
 
-declare -a SCRIPTS=(
-    "utils.sh"
-    "init.sh"
-    "install.sh"
-    "symlink.sh"
-    "misc.sh"
-    "setup.sh"
-)
-
+# Start Bootstrap
 echo -e "$TAG_STATUS Need sudo access to run."
+sudo -v # Get sudo access
 
-# Get sudo access
-sudo -v
+# Run Bootstrap
+source "$(dirname $0)/scripts/profiles.sh";
 
-for exec in "${SCRIPTS[@]}"; do
-    source "${PATH_TO_SCRIPTS}/${exec}";
-done
-
+# End Bootstrap
 echo -e "$TAG_DONE Bootstrap has been finished successfully. Reboot to see the changes."
-
 sudo -k
