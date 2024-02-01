@@ -27,17 +27,12 @@ declare -a PKGS=(
     "codelldb"
     "python-debugpy"
     "docker"
+    "jq"
 
     # Dependency
     "jack2"
     "ttf-firacode-nerd"
     "google-chrome" # For Flutter
-
-    # Personal
-    "spotify"
-    "obs-studio"
-    "gimp"
-    "discord"
 
     # OS
     "networkmanager"
@@ -71,10 +66,6 @@ declare -a PKGS=(
     "nautilus" # File Manager (GNOME)
     "gnome-disk-utility" # Disk Util (GNOME)
 
-    # Drivers
-    "nvidia" # Nvidia driver
-    "nvidia-settings"
-
     # Other Utils
     "gnome-clocks" # Clock App (GNOME)
     "snapshot" # Camera App (GNOME)
@@ -88,4 +79,3 @@ declare -a PKGS=(
 )
 
 download_packages "${PKGS[@]}"
-

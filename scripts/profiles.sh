@@ -1,5 +1,7 @@
 declare -a profiles=(
-    "essential"
+    "essential" # Keep on top
+    "nvidia"
+    "personal"
 )
 
 source_profiles "${profiles[@]}"

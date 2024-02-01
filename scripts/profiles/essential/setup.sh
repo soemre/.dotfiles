@@ -3,10 +3,8 @@
 declare -a setups=(
     "packer.sh"
     "shell.sh"
-    "wallpaper.sh"
     "services.sh"
     "flutter.sh"
-    "nvidia.sh"
     "tpm.sh"
 )
 
