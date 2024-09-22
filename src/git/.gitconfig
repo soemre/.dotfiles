@@ -3,13 +3,15 @@
 [init]
 	defaultBranch = main
 [user]
-	name = emresoysuren
-	email = 108146153+emresoysuren@users.noreply.github.com
+	name = soemre
+	email = emresoysuren03@gmail.com
 [credential "https://github.com"]
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = !/usr/bin/gh auth git-credential
 [core]
-	editor = nvim
+	editor = code --wait
 [submodule]
 	recurse = true
+[pull]
+	rebase = true

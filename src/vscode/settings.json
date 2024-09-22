@@ -1,0 +1,162 @@
+{
+    // ============================
+    // === Vim
+    // ============================
+    
+    // General
+    "vim.leader": "<Space>",
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.autoindent": true,
+    
+    // Keybindings
+    "vim.normalModeKeyBindingsNonRecursive": [
+        { "before": [ "<C-Space>" ], "commands": [  "workbench.action.terminal.toggleTerminal" ] },
+        { "before": [ "leader", "p" ], "commands": [ "editor.action.formatDocument" ] },
+        { "before": [ "leader", "c", "d" ], "commands": [ "editor.action.rename" ] },
+
+        // Search
+        { "before": [ "leader", "f" ], "commands": [ "find-it-faster.findFiles" ] },
+        { "before": [ "leader", "F" ], "commands": [ "find-it-faster.findwithinfiles" ] },
+
+        // Pane
+        { "before": [ "<C-h>" ], "after": [ "<C-w>", "h" ] },
+        { "before": [ "<C-j>" ], "after": [ "<C-w>", "j" ] },
+        { "before": [ "<C-k>" ], "after": [ "<C-w>", "k" ] },
+        { "before": [ "<C-l>" ], "after": [ "<C-w>", "l" ] },
+        { "before": [ "<C-Right>" ], "after": [ "<C-w>", ">" ] },
+        { "before": [ "<C-Left>" ], "after": [ "<C-w>", "<" ] },
+        { "before": [ "<C-Up>" ], "after": [ "<C-w>", "+" ] },
+        { "before": [ "<C-Down>" ], "after": [ "<C-w>", "-" ] },
+        { "before": [ "<C-w>", "T" ], "commands": [ "workbench.action.moveEditorToPreviousGroup" ] },
+
+        // Buffer
+        { "before": [ "<Tab>" ], "after": [ "g", "t" ] },
+        { "before": [ "<S-Tab>" ], "after": [ "g", "T" ] }
+    ],
+    "vim.visualModeKeyBindings": [
+        // Move selected lines
+        { "before": [ "<" ], "commands": [ "editor.action.outdentLines" ] },
+        { "before": [ ">" ], "commands": [ "editor.action.indentLines" ] },
+        { "before": [ "J" ], "commands": [ "editor.action.moveLinesDownAction" ] },
+        { "before": [ "K" ], "commands": [ "editor.action.moveLinesUpAction" ] },
+
+        // Don't copy on cut
+        { "before": [ "p" ], "after": [ "p", "g", "v", "y" ] }
+    ],
+    
+    // ============================
+    // === Git
+    // ============================
+    "git.autofetch": true,
+    "git.openRepositoryInParentFolders": "never",
+
+    // ============================
+    // === Fonts
+    // ============================
+    "editor.fontFamily": "'JetBrainsMono Nerd Font', Consolas, 'Courier New', monospace",
+    "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font', Consolas, 'Courier New', monospace",
+    "editor.inlayHints.fontFamily": "'JetBrainsMono Nerd Font', Consolas, 'Courier New', monospace",
+    "apc.font.family": "JetBrainsMono Nerd Font",
+    "apc.monospace.font.family": "JetBrainsMono Nerd Font",
+
+    // ============================
+    // === Editor Appearance
+    // ============================
+
+    // Functionality
+    "workbench.panel.opensMaximized": "always",
+    "editor.minimap.enabled": false,
+    "editor.stickyScroll.enabled": true,
+    "editor.rulers": [
+        80,
+        90,
+        100
+    ],
+    "editor.lineNumbers": "relative",
+    "editor.cursorSurroundingLines": 8,
+
+    // General
+    "workbench.colorTheme": "Bearded Theme Coffee Reversed",
+    "editor.fontSize": 16,
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.cursorStyle": "block",
+    "editor.cursorBlinking": "solid",
+
+    // Top Bar
+    "window.titleBarStyle": "custom",
+    "window.commandCenter": false,
+    "window.title": "${rootName}${separator}${profileName}${separator}${appName}",
+    "apc.header": {
+        "fontSize": 14
+    },
+    "workbench.layoutControl.enabled": false,
+    "workbench.editor.editorActionsLocation": "hidden",
+
+    // Sidebar
+    "apc.sidebar.titlebar": {
+        "fontSize": 14,
+    },
+    "apc.listRow": {
+        "fontSize": 14,
+        "height": 24,
+    },
+    "workbench.tree.indent": 20,
+    "apc.statusBar": {
+        "position": "editor-bottom",
+        "height": 28,
+        "fontSize": 14
+    },
+
+    // Bottom Bar
+    "workbench.activityBar.location": "bottom",
+    "window.menuBarVisibility": "compact",
+    "apc.activityBar": {
+        "position": "bottom",
+        "hideSettings": true,
+        "size": 28
+    },
+
+    // ============================
+    // === Editor Other
+    // ============================
+    "explorer.confirmDelete": false,
+    "workbench.reduceMotion": "off",
+    "editor.unicodeHighlight.allowedLocales": {
+        "tr": true
+    },
+    "find-it-faster.general.killTerminalAfterUse": true,
+    "find-it-faster.general.useTerminalInEditor": true,
+
+
+    // ============================
+    // === Language Specific
+    // ============================
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false,
+        "editor.suggest.insertMode": "replace",
+        "editor.defaultFormatter": "Dart-Code.dart-code",
+        "editor.inlayHints.enabled": "offUnlessPressed"
+    },
+    "[rust]": {
+        "editor.formatOnSave": true
+    },
+    "gopls": {
+        "buildFlags": [
+            "-tags=debug"
+        ]
+    },
+    "go.toolsManagement.autoUpdate": true,
+    "[json]": {
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace"
+    },
+}
