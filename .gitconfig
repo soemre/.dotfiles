@@ -1,17 +1,21 @@
-[safe]
-	directory = *
 [init]
 	defaultBranch = main
+
 [user]
 	name = soemre
 	email = emresoysuren03@gmail.com
+
 [credential "https://github.com"]
 	helper = !/usr/bin/gh auth git-credential
+
 [credential "https://gist.github.com"]
 	helper = !/usr/bin/gh auth git-credential
+
 [core]
-	editor = code --wait
+	editor = nvim
+
 [submodule]
 	recurse = true
+
 [pull]
 	rebase = true

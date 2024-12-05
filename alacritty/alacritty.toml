@@ -1,0 +1,17 @@
+[general]
+import = [ "xterm.toml" ]
+
+[window]
+decorations = "None"
+startup_mode = "Maximized"
+
+[font]
+size = 12
+normal = { family = "JetBrainsMono NF" }
+
+[env]
+term = "xterm-256color"
+
+[mouse]
+hide_when_typing = true
+

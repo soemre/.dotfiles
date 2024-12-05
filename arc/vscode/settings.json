@@ -66,6 +66,7 @@
 
     // Functionality
     "workbench.panel.opensMaximized": "always",
+    "window.newWindowDimensions": "maximized",
     "editor.minimap.enabled": false,
     "editor.stickyScroll.enabled": true,
     "editor.rulers": [
@@ -127,14 +128,16 @@
     },
     "find-it-faster.general.killTerminalAfterUse": true,
     "find-it-faster.general.useTerminalInEditor": true,
+    "go.showWelcome": false,
 
 
     // ============================
     // === Language Specific
     // ============================
     "[python]": {
-        "editor.formatOnType": true
+        "editor.formatOnType": true,
     },
+    "python.defaultInterpreterPath": "/usr/bin/python3",
     "[dart]": {
         "editor.formatOnSave": true,
         "editor.tabSize": 2,
@@ -158,5 +161,11 @@
             "strings": true
         },
         "editor.suggest.insertMode": "replace"
+    },
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": true,
+        "markdown": true,
+        "scminput": false
     },
 }
