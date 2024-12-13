@@ -12,6 +12,7 @@ declare -A dst=(
     [".tmux.conf"]="$HOME"
     ["nvim"]="$cfg_dir"
     ["alacritty"]="$cfg_dir"
+    ["scripts"]="$HOME"
 )
 
 
