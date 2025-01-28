@@ -11,7 +11,7 @@ declare -A dst=(
     [".gitconfig"]="$HOME"
     [".tmux.conf"]="$HOME"
     ["nvim"]="$cfg_dir"
-    ["alacritty"]="$cfg_dir"
+    ["ghostty"]="$cfg_dir"
     ["scripts"]="$HOME"
 )
 
