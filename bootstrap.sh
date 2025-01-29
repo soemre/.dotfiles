@@ -8,11 +8,12 @@ cfg_dir="$HOME/.config"
 
 # Link the dotfiles
 declare -A dst=(
+    ["scripts"]="$HOME"
     [".gitconfig"]="$HOME"
     [".tmux.conf"]="$HOME"
     ["nvim"]="$cfg_dir"
     ["ghostty"]="$cfg_dir"
-    ["scripts"]="$HOME"
+    ["nushell"]="$cfg_dir"
 )
 
 
