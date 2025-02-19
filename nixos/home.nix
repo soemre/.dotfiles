@@ -45,13 +45,16 @@ in
           disable-user-extensions = false;
 	      enabled-extensions = with pkgs.gnomeExtensions; [
               stopwatch.extensionUuid
-              maximized-by-default-reborn.extensionUuid
           ];
 	    };
         "${custom-keybindings}/custom0" = {
           binding = "<Super>Return";
           command = "ghostty";
           name = "Term";
+        };
+        "org/gnome/desktop/background" = {
+            picture-uri = "${config.home.homeDirectory}/.dotfiles/etc/wallpaper.png";
+            picture-uri-dark = "${config.home.homeDirectory}/.dotfiles/etc/wallpaper.png";
         };
       };
     };

@@ -68,7 +68,6 @@
     pkgs.syncthing
     pkgs.firefox
     pkgs.gnomeExtensions.stopwatch
-    pkgs.gnomeExtensions.maximized-by-default-reborn
     pkgs.wl-clipboard
     
     # CLI
@@ -88,7 +87,13 @@
     pkgs.ripgrep
     pkgs.weechat
     pkgs.ollama-cuda
+    pkgs.usbutils
+
+    # Bcs I have to
     pkgs.gnumake # nvim telescope-fzf dependency
+    pkgs.nodejs # no escape from JS
+    pkgs.zip
+    pkgs.unzip
 
     # Langs
     pkgs.python3Full
