@@ -6,10 +6,10 @@
 	email = emresoysuren03@gmail.com
 
 [credential "https://github.com"]
-	helper = !/usr/bin/gh auth git-credential
+	helper = !/run/current-system/sw/bin/gh auth git-credential
 
 [credential "https://gist.github.com"]
-	helper = !/usr/bin/gh auth git-credential
+	helper = !/run/current-system/sw/bin/gh auth git-credential
 
 [core]
 	editor = nvim
