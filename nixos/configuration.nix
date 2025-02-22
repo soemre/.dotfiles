@@ -1,16 +1,16 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./home.nix
-      ./services.nix
-    ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+    ./home.nix
+    ./services.nix
+  ];
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
@@ -18,7 +18,6 @@
 
   networking.hostName = "NULL";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -41,69 +40,92 @@
     LC_TIME = "it_IT.UTF-8";
   };
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "gb";
-    variant = "";
-  };
-
-  # Configure console keymap
   console.keyMap = "uk";
 
-  users.defaultUserShell = pkgs.nushell;
+  users = {
+    defaultUserShell = pkgs.nushell;
 
-  users.users.soemre = {
-    isNormalUser = true;
-    description = "Emre";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    users.soemre = {
+      isNormalUser = true;
+      description = "Emre";
+      extraGroups = ["networkmanager" "wheel"];
+      packages = with pkgs; [];
+    };
+  };
+
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
+
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      openssl
+    ];
   };
 
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [
-    # Env
-    pkgs.ghostty
-    pkgs.gnome-boxes
-    pkgs.syncthing
-    pkgs.firefox
-    pkgs.gnomeExtensions.stopwatch
-    pkgs.wl-clipboard
-    
-    # CLI
-    pkgs.git
-    pkgs.gh
-    pkgs.fzf
-    pkgs.fastfetch
-    pkgs.tree-sitter
-    pkgs.neovim
-    pkgs.tmux
-    pkgs.btop
-    pkgs.yazi
-    pkgs.docker
-    pkgs.nushell
-    pkgs.starship
-    pkgs.zoxide
-    pkgs.ripgrep
-    pkgs.weechat
-    pkgs.ollama-cuda
-    pkgs.usbutils
+  environment = {
+    sessionVariables = {
+      PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+    };
 
-    # Bcs I have to
-    pkgs.gnumake # nvim telescope-fzf dependency
-    pkgs.nodejs # no escape from JS
-    pkgs.zip
-    pkgs.unzip
+    systemPackages = with pkgs; [
+      # Env
+      ghostty
+      gnome-boxes
+      syncthing
+      firefox
+      gnomeExtensions.stopwatch
+      wl-clipboard
 
-    # Langs
-    pkgs.python3Full
-    pkgs.rustup
-    pkgs.gcc
+      # CLI
+      git
+      fzf
+      fastfetch
+      tree-sitter
+      neovim
+      tmux
+      btop
+      yazi
+      docker
+      nushell
+      starship
+      zoxide
+      ripgrep
+      weechat
+      ollama-cuda
+      usbutils
+      sqlx-cli
+      cargo-udeps
+      cargo-expand
 
-    # Personal
-    pkgs.obsidian
-    pkgs.spotify
-  ];
+      # Bcs I have to
+      gnumake # nvim telescope-fzf dependency
+      nodejs # no escape from JS
+      zip
+      unzip
+      pkg-config
+
+      # Langs
+      python3Full
+      rustup
+      gcc
+
+      # ORG
+      doctl
+      gh
+
+      # Personal
+      obsidian
+      spotify
+    ];
+  };
 
   system.stateVersion = "24.11";
 }
