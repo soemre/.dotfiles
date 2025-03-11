@@ -48,7 +48,7 @@
     users.soemre = {
       isNormalUser = true;
       description = "Emre";
-      extraGroups = ["networkmanager" "wheel"];
+      extraGroups = ["networkmanager" "wheel" "adbusers"];
       packages = with pkgs; [];
     };
   };
@@ -61,18 +61,36 @@
     };
   };
 
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [
-      openssl
-    ];
+  programs = {
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        openssl
+      ];
+    };
+
+    adb.enable = true;
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    android_sdk.accept_license = true;
+  };
 
-  environment = {
+  environment = let
+    androidComposition = pkgs.androidenv.composeAndroidPackages {
+      platformVersions = ["34" "35"];
+      buildToolsVersions = ["33.0.1"];
+      includeEmulator = true;
+      includeSystemImages = true;
+      systemImageTypes = ["google_apis"];
+      abiVersions = ["x86_64"];
+    };
+    androidSdk = androidComposition.androidsdk;
+  in {
     sessionVariables = {
       PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+      ANDROID_SDK_ROOT = "${androidSdk}/libexec/android-sdk";
     };
 
     systemPackages = with pkgs; [
@@ -80,9 +98,11 @@
       ghostty
       gnome-boxes
       syncthing
-      firefox
+      brave # Firefox </3
       gnomeExtensions.stopwatch
       wl-clipboard
+      postman
+      pixelorama
 
       # CLI
       git
@@ -104,6 +124,8 @@
       sqlx-cli
       cargo-udeps
       cargo-expand
+      caligula # Disk Imaging
+      bunyan-rs
 
       # Bcs I have to
       gnumake # nvim telescope-fzf dependency
@@ -111,11 +133,15 @@
       zip
       unzip
       pkg-config
+      androidSdk
+      jdk # Yeahh :/
+      steam-run # Lil Magic
 
-      # Langs
+      # Langs & Frameworks
       python3Full
       rustup
       gcc
+      flutter
 
       # ORG
       doctl
