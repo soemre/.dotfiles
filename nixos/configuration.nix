@@ -1,6 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   config,
   pkgs,
@@ -48,7 +45,7 @@
     users.soemre = {
       isNormalUser = true;
       description = "Emre";
-      extraGroups = ["networkmanager" "wheel" "adbusers"];
+      extraGroups = ["networkmanager" "wheel" "adbusers" "plugdev"];
       packages = with pkgs; [];
     };
   };
@@ -103,6 +100,8 @@
       wl-clipboard
       postman
       pixelorama
+      libreoffice
+      discord
 
       # CLI
       git
@@ -121,11 +120,17 @@
       weechat
       ollama-cuda
       usbutils
+      caligula # Disk Imaging
+      bunyan-rs
+      jq
+      toml-cli
+
+      # CLI - Cargo Extensions
       sqlx-cli
       cargo-udeps
       cargo-expand
-      caligula # Disk Imaging
-      bunyan-rs
+      cargo-binutils
+      probe-rs-tools
 
       # Bcs I have to
       gnumake # nvim telescope-fzf dependency
