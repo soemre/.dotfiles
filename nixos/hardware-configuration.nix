@@ -42,8 +42,13 @@
 
   services.xserver.videoDrivers = ["nvidia"];
 
-  # Enable OpenGL
   hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+
+    # Enable OpenGL
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
     graphics = {

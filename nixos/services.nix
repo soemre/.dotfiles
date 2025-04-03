@@ -11,7 +11,6 @@
     xserver = {
       enable = true;
       displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
       xkb = {
         layout = "gb";
         variant = "";
@@ -22,8 +21,8 @@
       enable = true;
       acceleration = "cuda";
       loadModels = [
-        deepseek-r1:8b
-        llava:7b
+        "deepseek-r1:8b"
+        "llava:7b"
       ];
     };
 

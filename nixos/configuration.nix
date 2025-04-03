@@ -50,15 +50,22 @@
     };
   };
 
-  virtualisation.docker = {
-    enable = true;
-    rootless = {
+  virtualisation = {
+    libvirtd = {
       enable = true;
-      setSocketVariable = true;
+    };
+    docker = {
+      enable = true;
+      rootless = {
+        enable = true;
+        setSocketVariable = true;
+      };
     };
   };
 
   programs = {
+    hyprland.enable = true;
+
     nix-ld = {
       enable = true;
       libraries = with pkgs; [
@@ -96,12 +103,20 @@
       gnome-boxes
       syncthing
       brave # Firefox </3
-      gnomeExtensions.stopwatch
       wl-clipboard
       postman
       pixelorama
       libreoffice
       discord
+      figma-linux
+      gimp
+      telegram-desktop
+      swww # WP Client
+      waypaper # WP GUI
+      nwg-panel # Status Bar (Temp)
+      findex # App Launcher
+      overskride # Bluetooth Frontend
+      nautilus # Dora the Explorer
 
       # CLI
       git
@@ -157,6 +172,10 @@
       spotify
     ];
   };
+
+  fonts.packages = with pkgs; [
+    nerdfonts
+  ];
 
   system.stateVersion = "24.11";
 }
