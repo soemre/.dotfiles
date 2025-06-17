@@ -1,40 +1,67 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
+  pkgs-unstable = import <unstable> {
+    config = config.nixpkgs.config;
+  };
+  libs = with pkgs; [
+    openssl.dev
+  ];
+in {
   programs = {
     hyprland.enable = true;
+    fish.enable = true;
+    adb.enable = true;
 
     nix-ld = {
       enable = true;
-      libraries = with pkgs; [
-        # openssl
-      ];
+      libraries = with pkgs;
+        [
+          llvmPackages.libclang
+        ]
+        ++ libs;
     };
-
-    adb.enable = true;
   };
 
   fonts.packages = with pkgs; [
-    nerdfonts
+    nerd-fonts.jetbrains-mono
   ];
 
   environment = let
     androidComposition = pkgs.androidenv.composeAndroidPackages {
-      platformVersions = ["34" "35"];
-      buildToolsVersions = ["33.0.1"];
+      platformVersions = ["33" "34" "35"];
+      buildToolsVersions = ["33.0.1" "34.0.0"];
       includeEmulator = true;
+      # includeNDK = true;
       includeSystemImages = true;
       systemImageTypes = ["google_apis"];
       abiVersions = ["x86_64"];
+      extraLicenses = [
+        "android-googletv-license"
+        "android-sdk-arm-dbt-license"
+        "android-sdk-license"
+        "android-sdk-preview-license"
+        "google-gdk-license"
+        "intel-android-extra-license"
+        "intel-android-sysimage-license"
+        "mips-android-sysimage-license"
+      ];
     };
     androidSdk = androidComposition.androidsdk;
-  in {
-    sessionVariables = {
-      # PKG_CONFIG_PATH = "$PKG_CONFIG_PATH:${pkgs.lib.strings.makeLibraryPath [
-      #   pkgs.openssl
-      # ]}";
-      ANDROID_SDK_ROOT = "${androidSdk}/libexec/android-sdk";
-    };
-
-    systemPackages = with pkgs; [
+    packages-unstable = with pkgs-unstable; [
+      dioxus-cli
+      kicad
+      vscode
+      wasm-bindgen-cli
+      tailwindcss_4
+      stm32cubemx
+      qgroundcontrol
+      ollama-cuda
+    ];
+    packages = with pkgs; [
       # Env
       ghostty
       gnome-boxes
@@ -58,6 +85,10 @@
       steam-run # Lil Magic
       obsidian
       spotify
+      vlc
+      ardour
+      cheese # Webcam
+      # davinci-resolve
 
       # CLI
       git
@@ -69,12 +100,10 @@
       btop
       yazi
       docker
-      nushell
       starship
       zoxide
       ripgrep
       weechat
-      ollama-cuda
       usbutils
       caligula # Disk Imaging
       bunyan-rs
@@ -83,34 +112,44 @@
       openocd
       zip
       unzip
+      minicom
 
       # CLI - Cargo Extensions
       sqlx-cli
       cargo-udeps
       cargo-expand
       cargo-binutils
+      cargo-generate
       probe-rs-tools
+      wasm-pack # Not exactly a cargo extension but related to cargo
 
       # Tool Specific
       python3Full
       rustup
+      clang
       gcc
       gcc-arm-embedded
-      flutter
+      flutter327
       nodejs # no escape from JS
       gnumake # nvim telescope-fzf dependency + yeahhhhhhhhh... "no cargo" sucks
+      cmake # it's also a dependency of dioxus
       androidSdk
-      jdk # Yeahh :/
-      # Idk
-      llvmPackages_latest.lldb
-      llvmPackages_latest.libllvm
-      llvmPackages_latest.libcxx
-      llvmPackages_latest.clang
+      jdk17 # Yeahh :/
       bear # C <3 emanuele
       pkg-config
       doctl
       gh
-      stm32cubemx
     ];
+  in {
+    sessionVariables = {
+      PKG_CONFIG_PATH = lib.makeSearchPath "lib/pkgconfig" libs;
+      ANDROID_SDK_ROOT = "${androidSdk}/libexec/android-sdk";
+      ANDROID_HOME = "$ANDROID_SDK_ROOT";
+      # ANDROID_NDK_HOME = "$ANDROID_HOME/ndk-bundle";
+      JAVA_HOME = "${pkgs.jdk17}";
+      LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
+    };
+
+    systemPackages = packages ++ packages-unstable ++ libs;
   };
 }

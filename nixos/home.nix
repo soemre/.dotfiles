@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz";
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
 in {
   imports = [
     (import "${home-manager}/nixos")
@@ -17,7 +17,7 @@ in {
       lib,
       ...
     }: {
-      home.stateVersion = "24.11";
+      home.stateVersion = "25.05";
 
       home.activation = {
         cloneDotfiles = lib.hm.dag.entryAfter ["writeBoundary"] ''
@@ -35,6 +35,7 @@ in {
         ".config/nushell".source = config.lib.file.mkOutOfStoreSymlink "${dotsdir}/nushell";
         ".config/hypr".source = config.lib.file.mkOutOfStoreSymlink "${dotsdir}/hypr";
         ".config/waypaper".source = config.lib.file.mkOutOfStoreSymlink "${dotsdir}/waypaper";
+        ".config/fish".source = config.lib.file.mkOutOfStoreSymlink "${dotsdir}/fish";
         ".tmux.conf".source = config.lib.file.mkOutOfStoreSymlink "${dotsdir}/.tmux.conf";
         ".gitconfig".source = config.lib.file.mkOutOfStoreSymlink "${dotsdir}/.gitconfig";
       };

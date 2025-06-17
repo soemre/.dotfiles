@@ -17,16 +17,17 @@
       };
     };
 
-    ollama = {
-      enable = true;
-      acceleration = "cuda";
-      loadModels = [
-        "deepseek-r1:8b"
-        "llava:7b"
-      ];
-    };
+    # ollama = {
+    #   enable = true;
+    #   acceleration = "cuda";
+    #   loadModels = [
+    #     "deepseek-r1:8b"
+    #     "llava:7b"
+    #   ];
+    # };
 
     udev.packages = [
+      pkgs.stlink
       (pkgs.writeTextFile {
         name = "69-probe-rs";
         text = builtins.readFile ./etc/69-probe-rs.rules;

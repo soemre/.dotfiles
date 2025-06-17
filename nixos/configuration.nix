@@ -1,8 +1,9 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
+  nixpkgs.config = {
+    allowUnfree = true;
+    android_sdk.accept_license = true;
+  };
+
   imports = [
     ./hardware-configuration.nix
     ./home.nix
@@ -41,12 +42,12 @@
   console.keyMap = "uk";
 
   users = {
-    defaultUserShell = pkgs.nushell;
+    defaultUserShell = pkgs.fish;
 
     users.soemre = {
       isNormalUser = true;
       description = "Emre";
-      extraGroups = ["networkmanager" "wheel" "adbusers" "plugdev"];
+      extraGroups = ["networkmanager" "wheel" "adbusers" "plugdev" "dialout"];
       packages = with pkgs; [];
     };
   };
@@ -64,16 +65,11 @@
     };
   };
 
-  nixpkgs.config = {
-    allowUnfree = true;
-    android_sdk.accept_license = true;
-  };
-
   nix = {
     settings = {
       experimental-features = ["nix-command" "flakes"];
     };
   };
 
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 }
