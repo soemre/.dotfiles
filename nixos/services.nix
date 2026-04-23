@@ -17,6 +17,10 @@
       };
     };
 
+    # gpg-agent = {
+    #   enable = true;
+    # }
+
     # ollama = {
     #   enable = true;
     #   acceleration = "cuda";
@@ -25,6 +29,13 @@
     #     "llava:7b"
     #   ];
     # };
+
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
 
     udev.packages = [
       pkgs.stlink

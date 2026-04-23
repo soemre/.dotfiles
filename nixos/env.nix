@@ -15,6 +15,12 @@ in {
     hyprland.enable = true;
     fish.enable = true;
     adb.enable = true;
+    kdeconnect.enable = true;
+    gnupg.agent = {
+        enable = true;
+        enableSSHSupport = true;
+        pinentryPackage = pkgs.pinentry-qt;
+    };
 
     nix-ld = {
       enable = true;
@@ -30,12 +36,18 @@ in {
     nerd-fonts.jetbrains-mono
   ];
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "beekeeper-studio-5.1.5"
+  ];
+
   environment = let
     androidComposition = pkgs.androidenv.composeAndroidPackages {
-      platformVersions = ["33" "34" "35"];
+      platformVersions = ["31" "33" "34" "35"];
       buildToolsVersions = ["33.0.1" "34.0.0"];
+      ndkVersions = ["26.3.11579264"];
+      cmakeVersions = ["3.22.1"];
       includeEmulator = true;
-      # includeNDK = true;
+      includeNDK = true;
       includeSystemImages = true;
       systemImageTypes = ["google_apis"];
       abiVersions = ["x86_64"];
@@ -53,13 +65,18 @@ in {
     androidSdk = androidComposition.androidsdk;
     packages-unstable = with pkgs-unstable; [
       dioxus-cli
-      kicad
+      # kicad
       vscode
       wasm-bindgen-cli
       tailwindcss_4
       stm32cubemx
       qgroundcontrol
       ollama-cuda
+      rustup
+      flutter_rust_bridge_codegen
+      codex
+      atuin
+      buf
     ];
     packages = with pkgs; [
       # Env
@@ -67,12 +84,12 @@ in {
       gnome-boxes
       syncthing
       brave # Firefox </3
+      chrome
       wl-clipboard
       postman
       pixelorama
       libreoffice
       discord
-      figma-linux
       gimp
       telegram-desktop
       swww # WP Client
@@ -88,7 +105,11 @@ in {
       vlc
       ardour
       cheese # Webcam
+      yaak
       # davinci-resolve
+      beekeeper-studio
+      waylock
+      mako
 
       # CLI
       git
@@ -113,6 +134,16 @@ in {
       zip
       unzip
       minicom
+      firebase-tools
+      protobuf
+      bazel_7
+      resumed
+      thefuck
+      exfatprogs
+      gnupg
+      pinentry-curses
+      pinentry-qt
+      libnotify
 
       # CLI - Cargo Extensions
       sqlx-cli
@@ -122,14 +153,14 @@ in {
       cargo-generate
       probe-rs-tools
       wasm-pack # Not exactly a cargo extension but related to cargo
+      cargo-watch
 
       # Tool Specific
       python3Full
-      rustup
       clang
       gcc
       gcc-arm-embedded
-      flutter327
+      flutter
       nodejs # no escape from JS
       gnumake # nvim telescope-fzf dependency + yeahhhhhhhhh... "no cargo" sucks
       cmake # it's also a dependency of dioxus

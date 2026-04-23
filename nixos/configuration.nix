@@ -9,6 +9,7 @@
     ./home.nix
     ./services.nix
     ./env.nix
+    ./matlab.nix
   ];
 
   # Bootloader
