@@ -19,3 +19,5 @@
 
 [pull]
 	rebase = true
+[safe]
+	directory = /nix/store/flfaaji6jp55c2dqa1ghavqskbjvgb17-flutter-wrapped-3.32.0-sdk-links
